@@ -58,36 +58,6 @@ def main() -> None:
     )
 
 
-# ── the claims above, checked ────────────────────────────────────────────────────
-
-assert merge(list(LEFT), list(RIGHT)) == sorted(LEFT + RIGHT)
-
-# THE CLAIM: the leftovers are appended, not compared. Nothing is compared after one
-# side empties, so the count is strictly less than the number of values merged.
-assert comparisons(LEFT, RIGHT) < len(LEFT) + len(RIGHT)
-
-# The extreme case: two runs that do not interleave at all cost one comparison per value
-# of the smaller run, and the whole of the other run rides along for free.
-assert comparisons([1, 2, 3], [7, 8, 9]) == 3
-
-# THE SNIPPET MUTATES ITS ARGUMENTS. `L.pop(0)` consumes the lists it was handed — which
-# is fine inside merge sort, where the halves are scratch, and a trap anywhere else.
-#
-# It consumes exactly ONE of them. The loop stops the moment either runs dry, and whatever
-# is still in the other is the leftover that gets tacked on — which is the claim itself,
-# visible in what the arguments look like afterwards.
-_l, _r = list(LEFT), list(RIGHT)
-_out = merge(_l, _r)
-assert (_l == []) != (_r == []), 'exactly one side should be drained'
-_leftover = _l or _r
-assert _leftover == _out[len(_out) - len(_leftover):], 'the leftover is the tail, unexamined'
-assert _leftover == sorted(_leftover)
-
-# Stability: with `<=`, a tie takes from L first.
-assert merge([1], [1]) == [1, 1]
-
-for _l, _r in (([], []), ([], [1, 2]), ([1, 2], []), ([1, 1, 1], [1, 1]), (LEFT, RIGHT)):
-    assert merge(list(_l), list(_r)) == sorted(_l + _r)
 
 if __name__ == '__main__':
     main()

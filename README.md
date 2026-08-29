@@ -7,6 +7,7 @@ The working code from the [@ByteAnimates](https://www.facebook.com/ByteAnimates)
 ```bash
 python3 merge.py
 python3 main.py
+python3 test_merge.py
 ```
 
 No dependencies. Python 3.9+.
@@ -30,6 +31,7 @@ def merge(L, R):
 | --- | --- |
 | `main.py` | run this — the demo, with real inputs and the claims asserted |
 | `merge.py` | the reel snippet, generated from the episode |
+| `test_merge.py` | the properties, checked — they survive a rewrite |
 
 ---
 
