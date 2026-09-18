@@ -5,8 +5,8 @@
 The working code from the [@ByteAnimates](https://www.facebook.com/ByteAnimates) reel.
 
 ```bash
-python3 merge.py
 python3 main.py
+python3 merge.py
 python3 test_merge.py
 ```
 
@@ -29,7 +29,7 @@ def merge(L, R):
 
 | | |
 | --- | --- |
-| `main.py` | run this — the demo, with real inputs and the claims asserted |
+| `main.py` | run this — the demo, with real inputs and real output |
 | `merge.py` | the reel snippet, generated from the episode |
 | `test_merge.py` | the properties, checked — they survive a rewrite |
 
